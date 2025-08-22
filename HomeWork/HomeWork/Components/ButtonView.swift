@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ButtonView: View {
     let buttonText: String
+    let buttonColour: Color
     let onTap: () -> Void
     
     var body: some View {
@@ -13,7 +14,7 @@ struct ButtonView: View {
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .padding()
-                .background(Color.buttonColour)
+                .background(buttonColour)
                 .cornerRadius(12)
                 .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
         }

@@ -1,21 +1,35 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
+    @ObservedObject var viewModel = LoginViewModel()
     
     var body: some View {
         ZStack {
             Color.backgroundColour
                 .ignoresSafeArea()
-            VStack {
-                loginHeaderView
-                authenticationView
-                Spacer()
+            if viewModel.isLoading {
+                ZStack {
+                    loginView
+                    ProgressView()
+                        .scaleEffect(1.2)
+                        .frame(width: 80, height: 80)
+                        .background(Color.backgroundColour)
+                        .cornerRadius(15)
+                }
+            } else {
+                loginView
             }
-            .background(Color.backgroundColour)
-            .padding()
         }
+    }
+    
+    private var loginView: some View {
+        VStack {
+            loginHeaderView
+            authenticationView
+            Spacer()
+        }
+        .background(Color.backgroundColour)
+        .padding()
     }
     
     private var loginHeaderView: some View {
@@ -41,55 +55,72 @@ struct LoginView: View {
     }
     
     private var logoView: some View {
-        Image(decorative: "house_logo")
+        Image(decorative: viewModel.imageName)
             .resizable()
             .aspectRatio(contentMode: .fit)
     }
     
     private var loginTitleView: some View {
-        Text("Login")
+        Text(viewModel.titleText)
             .font(.largeTitle)
             .fontWeight(.regular)
             .foregroundStyle(.black)
     }
     
     private var emailTextFieldView: some View {
-        LoginTextFieldView(textValue: $email, placeholder: "Email")
+        VStack(alignment: .leading) {
+            LoginTextFieldView(
+                textValue: $viewModel.emailInputString,
+                placeholder: viewModel.emailPlaceholder)
+            emailTextFieldErrorMessageView
+        }
+    }
+    
+    @ViewBuilder
+    private var emailTextFieldErrorMessageView: some View {
+        if let message = viewModel.emailErrorMessage {
+            InlineErrorMessageView(message: message)
+        }
     }
     
     private var passwordTextFieldView: some View {
-        LoginTextFieldView(textValue: $password, placeholder: "Password")
+        VStack(alignment: .leading) {
+            LoginTextFieldView(
+                textValue: $viewModel.passwordInputString,
+                placeholder: viewModel.passwordPlaceholder)
+            passwordTextFieldErrorMessageView
+        }
+    }
+    
+    @ViewBuilder
+    private var passwordTextFieldErrorMessageView: some View {
+        if let message = viewModel.passwordErrorMessage {
+            InlineErrorMessageView(message: message)
+        }
     }
     
     private var logInButtonView: some View {
-        ButtonView(buttonText: "Log In") {
-            print("logging in tapped")
+        ButtonView(
+            buttonText: viewModel.loginButtonText,
+            buttonColour: viewModel.state == .login ? Color.buttonColour : Color.secondaryButtonColour) {
+            Task {
+                await viewModel.loginOrSignUp()
+            }
         }
-        .opacity(isLoginDisabled ? 0.5 : 1)
-        .disabled(isLoginDisabled)
+        .opacity(viewModel.isLoginDisabled ? 0.5 : 1)
+        .disabled(viewModel.isLoginDisabled)
     }
     
     private var signupButtonView: some View {
         Button {
-            print("sign up tapped")
+            Task {
+                viewModel.altButtonAction()
+            }
         } label: {
-            Text("Don't have an account? Sign Up")
+            Text(viewModel.altButtonText)
                 .font(.body)
                 .foregroundStyle(.gray)
         }
-    }
-    
-    private var isLoginDisabled: Bool {
-        email.isEmpty || password.isEmpty
-    }
-    
-    private func loginTapped() {
-        print("login tapped")
-        //start loading
-        //disable the button
-        //validate the input
-        //auth the user
-        //nav to the dashboard
     }
 }
 
