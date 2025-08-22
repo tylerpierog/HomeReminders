@@ -3,9 +3,10 @@ import SwiftUI
 struct LoginTextFieldView: View {
     @Binding var textValue: String
     let placeholder: String
+    var isSecure: Bool = false
     
     var body: some View {
-        TextField(placeholder, text: $textValue)
+        textField
             .padding()
             .background(Color.white)
             .overlay(
@@ -15,5 +16,22 @@ struct LoginTextFieldView: View {
             .cornerRadius(10)
             .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
             .accessibilityHint("Text Field")
+    }
+    
+    @ViewBuilder
+    private var textField: some View {
+        if isSecure {
+            secureTextField
+        } else {
+            normalTextField
+        }
+    }
+    
+    private var secureTextField: some View {
+        SecureField(placeholder, text: $textValue)
+    }
+    
+    private var normalTextField: some View {
+        TextField(placeholder, text: $textValue)
     }
 }

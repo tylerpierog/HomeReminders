@@ -109,7 +109,8 @@ struct LoginView: View {
         VStack(alignment: .leading) {
             LoginTextFieldView(
                 textValue: $viewModel.passwordInputString,
-                placeholder: viewModel.passwordPlaceholder)
+                placeholder: viewModel.passwordPlaceholder,
+                isSecure: true)
             passwordTextFieldErrorMessageView
         }
         .accessibilityElement(children: .combine)
