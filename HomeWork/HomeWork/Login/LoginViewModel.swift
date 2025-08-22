@@ -14,6 +14,8 @@ class LoginViewModel: ObservableObject {
     @Published var isLoading: Bool
     @Published var state: AuthenticationStep = .login
     
+    weak var session: AppSession?
+    
     private(set) var validator: AuthenticationValidating
     private(set) var errorMessageTranslator: AuthenticationErrorTranslating
     
@@ -125,11 +127,13 @@ class LoginViewModel: ObservableObject {
         
         if !isEmailEmpty && !isPasswordEmpty {
             try? await Task.sleep(for: .seconds(2))
+            session?.didAuthenticate()
         }
     }
     
     private func signUpUser() async {
         try? await Task.sleep(for: .seconds(2))
+        session?.didAuthenticate()
     }
     
     private func signUp() async {

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject private var session: AppSession
     @ObservedObject var viewModel = LoginViewModel()
     @Environment(\.horizontalSizeClass) private var sizeClass
     
@@ -24,6 +25,11 @@ struct LoginView: View {
                 }
             } else {
                 loginView
+            }
+        }
+        .onAppear {
+            if viewModel.session !== session {
+                viewModel.session = session
             }
         }
     }
