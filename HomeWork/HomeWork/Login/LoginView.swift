@@ -36,6 +36,7 @@ struct LoginView: View {
         VStack(spacing: 0) {
             logoView
             loginTitleView
+                .accessibilityAddTraits(.isHeader)
         }
     }
     
