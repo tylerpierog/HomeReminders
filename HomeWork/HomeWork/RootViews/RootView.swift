@@ -7,9 +7,8 @@ struct RootView: View {
         switch session.phase {
         case .unauthenticated:
             LoginView()
-
         case .onboarding, .authenticated:
-            EmptyView()
+            RootTabView()
         }
     }
 }
