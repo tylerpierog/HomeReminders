@@ -42,6 +42,12 @@ class LoginViewModel: ObservableObject {
         : "Sign Up"
     }
     
+    var authenticationWelcomeText: String {
+        state == .login
+        ? "Welcome back - sign in to continue"
+        : "Create your account to continue"
+    }
+    
     var titleText: String {
         state == .login
         ? "Login"

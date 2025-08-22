@@ -21,6 +21,22 @@ struct LoginViewModelTests {
         
         #expect(vm.imageName == "house_logo")
     }
+    
+    @Test func authenticationWelcomeTextForLoginState() async throws {
+        let vm = LoginViewModel()
+        
+        vm.state = .login
+        
+        #expect(vm.authenticationWelcomeText == "Welcome back - sign in to continue")
+    }
+    
+    @Test func authenticationWelcomeTextForSignUpState() async throws {
+        let vm = LoginViewModel()
+        
+        vm.state = .signUp
+        
+        #expect(vm.authenticationWelcomeText == "Create your account to continue")
+    }
 
     @Test func titleTextForLoginState() async throws {
         let vm = LoginViewModel()

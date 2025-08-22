@@ -2,6 +2,7 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject var viewModel = LoginViewModel()
+    @Environment(\.horizontalSizeClass) private var sizeClass
     
     var body: some View {
         ZStack {
@@ -34,6 +35,8 @@ struct LoginView: View {
     
     private var loginHeaderView: some View {
         VStack(spacing: 0) {
+            HomeWorkBrandingHeaderView()
+                .padding(.bottom, 6)
             logoView
             loginTitleView
                 .accessibilityAddTraits(.isHeader)
@@ -41,15 +44,16 @@ struct LoginView: View {
     }
     
     private var authenticationView: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 40) {
             loginTextFieldsView
             logInButtonView
             signupButtonView
         }
+        .frame(maxWidth: 560)
     }
     
     private var loginTextFieldsView: some View {
-        VStack {
+        VStack(spacing: 20) {
             emailTextFieldView
             passwordTextFieldView
         }
@@ -62,10 +66,21 @@ struct LoginView: View {
     }
     
     private var loginTitleView: some View {
-        Text(viewModel.titleText)
-            .font(.largeTitle)
-            .fontWeight(.regular)
-            .foregroundStyle(.black)
+        VStack(spacing: 10) {
+            Text(viewModel.titleText)
+                .font(.system(size: sizeClass == .regular ? 38 : 28, weight: .bold, design: .rounded))
+                .foregroundStyle(.primary)
+                .padding(.horizontal, 18)
+                .padding(.vertical, 8)
+                .animation(.easeInOut(duration: 0.5), value: viewModel.titleText)
+            
+            Text(viewModel.authenticationWelcomeText)
+                .font(.system(size: sizeClass == .regular ? 18 : 16, weight: .regular, design: .rounded))
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 20)
+                .animation(.easeInOut(duration: 0.5), value: viewModel.authenticationWelcomeText)
+        }
     }
     
     private var emailTextFieldView: some View {
@@ -75,6 +90,7 @@ struct LoginView: View {
                 placeholder: viewModel.emailPlaceholder)
             emailTextFieldErrorMessageView
         }
+        .accessibilityElement(children: .combine)
     }
     
     @ViewBuilder
@@ -91,6 +107,7 @@ struct LoginView: View {
                 placeholder: viewModel.passwordPlaceholder)
             passwordTextFieldErrorMessageView
         }
+        .accessibilityElement(children: .combine)
     }
     
     @ViewBuilder
@@ -110,6 +127,7 @@ struct LoginView: View {
         }
         .opacity(viewModel.isLoginDisabled ? 0.5 : 1)
         .disabled(viewModel.isLoginDisabled)
+        .animation(.spring(response: 0.55, dampingFraction: 0.85), value: viewModel.state)
     }
     
     private var signupButtonView: some View {
