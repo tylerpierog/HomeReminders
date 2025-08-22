@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "1DD50D49-2682-4238-A848-54F67777F845",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:HomeWork.xcodeproj",
+      "identifier" : "DB6C4C382E58B7830085CF61",
+      "name" : "HomeWork"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:HomeWork.xcodeproj",
+        "identifier" : "DB6C4C452E58B7840085CF61",
+        "name" : "HomeWorkTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "skippedTests" : [
+        "HomeWorkUITests",
+        "HomeWorkUITests\/testExample()",
+        "HomeWorkUITests\/testLaunchPerformance()",
+        "HomeWorkUITestsLaunchTests",
+        "HomeWorkUITestsLaunchTests\/testLaunch()"
+      ],
+      "target" : {
+        "containerPath" : "container:HomeWork.xcodeproj",
+        "identifier" : "DB6C4C4F2E58B7840085CF61",
+        "name" : "HomeWorkUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

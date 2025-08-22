@@ -27,6 +27,7 @@
 		DB6C4C392E58B7830085CF61 /* HomeWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6C4C462E58B7840085CF61 /* HomeWorkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeWorkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6C4C502E58B7840085CF61 /* HomeWorkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeWorkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB6C4C9E2E58CF4F0085CF61 /* HomeWork.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = HomeWork.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +76,7 @@
 		DB6C4C302E58B7830085CF61 = {
 			isa = PBXGroup;
 			children = (
+				DB6C4C9E2E58CF4F0085CF61 /* HomeWork.xctestplan */,
 				DB6C4C3B2E58B7830085CF61 /* HomeWork */,
 				DB6C4C492E58B7840085CF61 /* HomeWorkTests */,
 				DB6C4C532E58B7840085CF61 /* HomeWorkUITests */,
