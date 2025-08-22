@@ -11,10 +11,15 @@ struct LoginView: View {
             if viewModel.isLoading {
                 ZStack {
                     loginView
+                        .blur(radius: 2)
+                    Color.black.opacity(0.25)
+                        .ignoresSafeArea()
+                        .transition(.opacity)
+                    
                     ProgressView()
                         .scaleEffect(1.2)
                         .frame(width: 80, height: 80)
-                        .background(Color.backgroundColour)
+                        .background(Color.secondaryButtonColour.opacity(0.7))
                         .cornerRadius(15)
                 }
             } else {
