@@ -80,14 +80,14 @@ struct LoginView: View {
         VStack(spacing: 10) {
             Text(viewModel.titleText)
                 .font(.system(size: sizeClass == .regular ? 38 : 28, weight: .bold, design: .rounded))
-                .foregroundStyle(.primary)
+                .foregroundStyle(.black)
                 .padding(.horizontal, 18)
                 .padding(.vertical, 8)
                 .animation(.easeInOut(duration: 0.5), value: viewModel.titleText)
             
             Text(viewModel.authenticationWelcomeText)
                 .font(.system(size: sizeClass == .regular ? 18 : 16, weight: .regular, design: .rounded))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 20)
                 .animation(.easeInOut(duration: 0.5), value: viewModel.authenticationWelcomeText)

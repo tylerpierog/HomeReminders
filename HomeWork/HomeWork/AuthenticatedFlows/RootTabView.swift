@@ -21,22 +21,6 @@ struct RootTabView: View {
     }
 }
 
-// Placeholder screens
-struct DashboardView: View {
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 16) {
-                Text("Welcome to HomeWork")
-                    .font(.title2.bold())
-                Text("Your home maintenance at a glance.")
-                    .foregroundStyle(.secondary)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.backgroundColour.ignoresSafeArea())
-            .navigationTitle("Dashboard")
-        }
-    }
-}
 
 struct TasksView: View {
     var body: some View {
@@ -58,7 +42,7 @@ struct CalendarView: View {
                 Image(systemName: "calendar.badge.clock")
                     .font(.system(size: 48))
                 Text("Upcoming maintenance")
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.black)
             }
             .navigationTitle("Calendar")
         }

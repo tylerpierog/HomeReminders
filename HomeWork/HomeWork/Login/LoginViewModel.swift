@@ -80,15 +80,14 @@ class LoginViewModel: ObservableObject {
     
     func loginOrSignUp() async {
         isLoading = true
+        defer { isLoading = false }
 
         switch state {
         case .login:
             await authenticateUser()
         case .signUp:
             await signUp()
-        }
-        
-        isLoading = false
+        }        
     }
     
     func altButtonAction() {

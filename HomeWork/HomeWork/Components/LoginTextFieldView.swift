@@ -7,7 +7,8 @@ struct LoginTextFieldView: View {
     
     var body: some View {
         textField
-            .padding()
+            .padding(.vertical, 14)
+            .padding(.horizontal, 12)
             .background(Color.white)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
@@ -15,6 +16,7 @@ struct LoginTextFieldView: View {
             )
             .cornerRadius(10)
             .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+            .contentShape(Rectangle())
             .accessibilityHint("Text Field")
     }
     
@@ -28,10 +30,20 @@ struct LoginTextFieldView: View {
     }
     
     private var secureTextField: some View {
-        SecureField(placeholder, text: $textValue)
+        SecureField(
+            "",
+            text: $textValue,
+            prompt: Text(placeholder)
+                .foregroundStyle(.gray))
     }
     
     private var normalTextField: some View {
-        TextField(placeholder, text: $textValue)
+        TextField(
+            "",
+            text: $textValue,
+            prompt:
+                    Text(placeholder)
+                .foregroundStyle(.gray)
+        )
     }
 }
