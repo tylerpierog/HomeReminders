@@ -32,3 +32,9 @@ It sends timely reminders so your home always runs smoothly.
 
 <img width="568" height="1084" alt="Screenshot 2025-08-22 at 5 18 14 PM" src="https://github.com/user-attachments/assets/83a9d69f-6140-4501-9997-e2802fe3eeda" />
 <img width="1036" height="1379" alt="Screenshot 2025-08-22 at 5 18 26 PM" src="https://github.com/user-attachments/assets/e631bb37-e242-45cc-ad8e-e4dacc78ee2c" />
+
+
+## WIP 🚧🏗️👷‍♂️
+<img width="632" height="1212" alt="Screenshot 2025-08-23 at 9 01 46 PM" src="https://github.com/user-attachments/assets/0bd082b3-d931-448c-93f8-ed60f4caa49f" />
+
+
