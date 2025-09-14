@@ -8,14 +8,23 @@ struct SettingsView: View {
         List {
             Section("Account") {
                 Button("Sign Out") { session.signOut() }
-                Text("View Profile")
-                    .onTapGesture {
-                        settingsCoordinator.goToProfile()
-                    }
+                viewProfileItem
             }
             Section("Appearance") { Toggle("Use system theme", isOn: .constant(true)) }
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private var viewProfileItem: some View {
+        HStack {
+            Text("View Profile")
+                
+            Spacer()
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            settingsCoordinator.goToProfile()
+        }
     }
 }
