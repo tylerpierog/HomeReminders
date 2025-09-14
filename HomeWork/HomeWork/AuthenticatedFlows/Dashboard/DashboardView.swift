@@ -4,23 +4,21 @@ struct DashboardView: View {
     @ObservedObject private var viewModel = DashboardViewModel()
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 16) {
+        VStack(spacing: 16) {
+            ScrollView {
                 HomeWorkBrandingHeaderView()
                     .padding(.bottom, 16)
-                ScrollView {
-                    weatherView
-                    progressView
-                        .padding(.top, 16)
-                    upcomingTasksSectionView
-                        .padding(.top, 16)
-                    Spacer()
-                }
+                weatherView
+                progressView
+                    .padding(.top, 16)
+                upcomingTasksSectionView
+                    .padding(.top, 16)
+                Spacer()
             }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.backgroundColour.ignoresSafeArea())
         }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.backgroundColour.ignoresSafeArea())
         .task {
             await viewModel.fetchCurrentWeather()
         }
@@ -45,7 +43,7 @@ struct DashboardView: View {
         let (primary, secondary) = WeatherTint.colors(
             for: viewModel.currentWeatherSfSymbol ?? "sun.max.fill",
             isDaylight: viewModel.isDaytime)
-
+        
         HStack(spacing: 20) {
             Image(systemName: viewModel.currentWeatherSfSymbol ?? "sun.max.fill")
                 .resizable()
@@ -75,7 +73,7 @@ struct DashboardView: View {
                     imageName: forecast.symbolName,
                     temperature: "\(forecast.temperatureInt)°",
                     isDaylight: forecast.isDaylight)
-                    .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity)
             }
         }
         .padding(.all, 16)
