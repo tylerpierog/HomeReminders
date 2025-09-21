@@ -1,6 +1,8 @@
 import SwiftUI
 
 // TODO: Move these to their own file and organize it and start to build out the pages
+typealias ButtonAction = () -> Void
+
 struct RootTabView: View {
     @EnvironmentObject var router: Router
     @EnvironmentObject var taskCoordinator: TaskCoordinator
@@ -21,7 +23,7 @@ struct RootTabView: View {
                 SettingsView()
                     .tabItem { Label("Settings", systemImage: "gearshape") }
             }
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.navBarColour.opacity(0.85), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarColorScheme(.light, for: .navigationBar)

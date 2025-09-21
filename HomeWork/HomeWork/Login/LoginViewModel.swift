@@ -125,13 +125,13 @@ class LoginViewModel: ObservableObject {
         }
         
         if !isEmailEmpty && !isPasswordEmpty {
-            try? await Task.sleep(for: .seconds(2))
+            try? await Task.sleep(for: .seconds(1))
             session?.didAuthenticate()
         }
     }
     
     private func signUpUser() async {
-        try? await Task.sleep(for: .seconds(2))
+        try? await Task.sleep(for: .seconds(1))
         session?.didAuthenticate()
     }
     

@@ -17,14 +17,16 @@ struct SettingsView: View {
     }
     
     private var viewProfileItem: some View {
-        HStack {
-            Text("View Profile")
-            Spacer()
-            Image(systemName: "chevron.right")
-        }
-        .contentShape(Rectangle())
-        .onTapGesture {
+        Button {
             settingsCoordinator.goToProfile()
+        } label: {
+            HStack {
+                Text("View Profile")
+                    .foregroundStyle(.black)
+                Spacer()
+                Image(systemName: "chevron.right")
+            }
+            .contentShape(Rectangle())
         }
     }
 }
